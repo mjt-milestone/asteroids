@@ -47,7 +47,13 @@ def main():
         for obj in updatable:
             # Update all sprites in the updatable group
             obj.update(dt)
-
+        
+        # Check for collisions between player and asteroids
+        for asteroid in asteroids:
+            if player.collide(asteroid):
+                print("Game over!")
+                # Handle collision (e.g., end game.)
+                running = False  # Exit the game loop
 
         # Handle game logic and rendering here
         # Fill the screen with black
