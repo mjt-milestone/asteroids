@@ -1,6 +1,7 @@
 import pygame
 from circleshape import *
 from constants import *
+from shot import Shot
 
 # player class for sprites
 class Player(CircleShape):
@@ -22,6 +23,11 @@ class Player(CircleShape):
         # draw the player
         pygame.draw.polygon(screen, "white ", self.triangle(), 2)
 
+    def shoot(self):
+        # shoot a bullet
+        shot = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+        shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
+
     def rotate(self, dt):
         # rotate the player
         self.rotation += PLAYER_TURN_SPEED * dt
@@ -41,6 +47,9 @@ class Player(CircleShape):
         if keys[pygame.K_s]:
             # move backward
             self.move(dt)
+        if keys[pygame.K_SPACE]:
+            # shoot
+            self.shoot()
     
     def move(self, dt): 
         keys = pygame.key.get_pressed()
