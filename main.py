@@ -63,7 +63,7 @@ def main():
             for shot in shots:
                 if shot.collide(asteroid):
                     # Handle collision (e.g., destroy asteroid and shot)
-                    asteroid.kill()
+                    asteroid.split()
                     shot.kill() 
 
         # Handle game logic and rendering here
